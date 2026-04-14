@@ -1,0 +1,21 @@
+{
+  "name": "Pintos Dev Environment",
+  "build": {
+    "dockerfile": "../Dockerfile",
+    "context": ".."
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.cpptools",
+        "ms-vscode.makefile-tools"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  },
+  "workspaceMount": "source=${localWorkspaceFolder},target=/pintos,type=bind",
+  "workspaceFolder": "/pintos",
+  "postCreateCommand": "cd /pintos/src/utils && gcc -o squish-pty squish-pty.c && gcc -o squish-unix squish-unix.c && echo 'Environment ready.'"
+}

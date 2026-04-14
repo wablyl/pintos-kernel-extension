@@ -1,0 +1,61 @@
+# -*- makefile -*-
+
+# Test names.
+# Only alarm clock tests are enabled for this assignment.
+# To re-enable priority/mlfqs tests, uncomment the lines below
+# and update Grading accordingly.
+tests/threads_TESTS = $(addprefix tests/threads/,alarm-single		\
+alarm-multiple alarm-simultaneous alarm-zero alarm-negative)
+
+# Uncomment to enable priority scheduling tests:
+#tests/threads_TESTS += $(addprefix tests/threads/,priority-change	\
+#priority-donate-one priority-donate-multiple priority-donate-multiple2	\
+#priority-donate-nest priority-donate-sema priority-donate-lower	\
+#priority-fifo priority-preempt priority-sema priority-condvar		\
+#priority-donate-chain alarm-priority)
+
+# Uncomment to enable MLFQS tests:
+#tests/threads_TESTS += $(addprefix tests/threads/,mlfqs-load-1	\
+#mlfqs-load-60 mlfqs-load-avg mlfqs-recent-1 mlfqs-fair-2		\
+#mlfqs-fair-20 mlfqs-nice-2 mlfqs-nice-10 mlfqs-block)
+
+# Sources for tests.
+tests/threads_SRC  = tests/threads/tests.c
+tests/threads_SRC += tests/threads/alarm-wait.c
+tests/threads_SRC += tests/threads/alarm-simultaneous.c
+tests/threads_SRC += tests/threads/alarm-priority.c
+tests/threads_SRC += tests/threads/alarm-zero.c
+tests/threads_SRC += tests/threads/alarm-negative.c
+tests/threads_SRC += tests/threads/priority-change.c
+tests/threads_SRC += tests/threads/priority-donate-one.c
+tests/threads_SRC += tests/threads/priority-donate-multiple.c
+tests/threads_SRC += tests/threads/priority-donate-multiple2.c
+tests/threads_SRC += tests/threads/priority-donate-nest.c
+tests/threads_SRC += tests/threads/priority-donate-sema.c
+tests/threads_SRC += tests/threads/priority-donate-lower.c
+tests/threads_SRC += tests/threads/priority-fifo.c
+tests/threads_SRC += tests/threads/priority-preempt.c
+tests/threads_SRC += tests/threads/priority-sema.c
+tests/threads_SRC += tests/threads/priority-condvar.c
+tests/threads_SRC += tests/threads/priority-donate-chain.c
+tests/threads_SRC += tests/threads/mlfqs-load-1.c
+tests/threads_SRC += tests/threads/mlfqs-load-60.c
+tests/threads_SRC += tests/threads/mlfqs-load-avg.c
+tests/threads_SRC += tests/threads/mlfqs-recent-1.c
+tests/threads_SRC += tests/threads/mlfqs-fair.c
+tests/threads_SRC += tests/threads/mlfqs-block.c
+
+# Uncomment to enable MLFQS kernel flags:
+#MLFQS_OUTPUTS = 				\
+#tests/threads/mlfqs-load-1.output		\
+#tests/threads/mlfqs-load-60.output		\
+#tests/threads/mlfqs-load-avg.output		\
+#tests/threads/mlfqs-recent-1.output		\
+#tests/threads/mlfqs-fair-2.output		\
+#tests/threads/mlfqs-fair-20.output		\
+#tests/threads/mlfqs-nice-2.output		\
+#tests/threads/mlfqs-nice-10.output		\
+#tests/threads/mlfqs-block.output
+#
+#$(MLFQS_OUTPUTS): KERNELFLAGS += -mlfqs
+#$(MLFQS_OUTPUTS): TIMEOUT = 480
