@@ -1,0 +1,32 @@
+name: Build Check
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    name: Build Kernel
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential gcc gcc-multilib make perl qemu-system-x86
+
+      - name: Build pintos utilities
+        run: |
+          cd src/utils
+          gcc -o squish-pty squish-pty.c
+          gcc -o squish-unix squish-unix.c
+
+      - name: Build kernel
+        run: |
+          cd src/threads
+          make
